@@ -1,0 +1,25 @@
+#include <iostream>
+#include <cmath> // For M_PI
+using namespace std;
+
+// Function to calculate the volume of a cube
+int volume(int a) {
+    return (a * a * a);
+}
+
+// Function to calculate the volume of a cylinder
+double volume(double r, int h) {
+    return (M_PI * r * r * h);
+}
+
+// Function to calculate the volume of a cuboid
+int volume(int l, int b, int h) {
+    return (l * b * h);
+}
+
+int main() {
+    cout << "The volume of a cube with dimension 3 is " << volume(3) << endl;
+    cout << "The volume of a cuboid with dimensions 3, 6, and 9 is " << volume(3, 6, 9) << endl;
+    cout << "The volume of a cylinder with radius 3 and height 6 is " << volume(3.0, 6) << endl;
+    return 0;
+}
