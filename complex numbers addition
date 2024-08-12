@@ -35,10 +35,10 @@ int calculator :: sumCompComplex(complex o1, complex o2){
 int main(){
     complex o1, o2;
     o1.setNum(4, 5);
-  //  o1.printNum();
+    o1.printNum();
 
     o2.setNum(7, 8);
-   // o2.printNum();
+    o2.printNum();
 
     calculator calc;
     int res = calc.sumRealComplex(o1, o2);
