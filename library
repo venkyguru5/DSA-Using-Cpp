@@ -7,25 +7,30 @@ public:
     string name;
     void accept()
     {
-        cout << "ENTER HE BOOK TITLE :- ";
+        cout << "Enter The Name of Book : ";
         cin >> name;
-        cout << "ENTER HE BOOK OF COST:- ";
+        cout << "Enter the Cost of Book: ";
         cin >> cost;
     }
     void display()
     {
         cout << name << "\t\t" << cost << "\n";
     }
+    void price(void){
+    cout<<name<<"\t"<<cost<<endl;
+}
 };
+
+
 int main()
 {
     Book b[10], b1[10];
     int n, i, j, ch, count = 0, rem = 0;
-    cout << "HOW MANY BOOK ARE YOU ENTER IT:-  ";
+    cout << "How Many Books You Want To Insert It:  ";
     cin >> n;
     do
     {
-        cout << "\nMENU\n1)ACCEPT\n2)DISPLAY\n3)SORTED\n4)Remove duplicate\n5)Display remove duplicate\n6)Count\n7)Exit\nEnter your choice :- ";
+        cout << "\nMENU\n1. Accept\n2. Display\n3. Sorted Array\n4. Remove duplicate\n5. Display Duplicates\n6. Books Below 500\n7. books above 500\n8. Exit\n ENTER YOUR CHOICE:  ";
         cin >> ch;
         switch (ch)
         {
@@ -34,11 +39,12 @@ int main()
                 b[i].accept();
             break;
         case 2:
-            cout << "BOOK TITLE\tCOST\n";
+            cout << "BOOK NAME\tCOST\n";
             for (i = 0; i < n; i++)
                 b[i].display();
             break;
         case 3:
+        cout << "BOOK NAME\tCOST\n";
             for (i = 0; i < n - 1; i++)
             {
                 for (j = 0; j < n - i - 1; j++)
@@ -57,6 +63,7 @@ int main()
                 b[i].display();
             break;
         case 4:
+            int k;
 
             for (i = 0; i < n; i++)
             {
@@ -66,39 +73,64 @@ int main()
                     {
                         b1[rem++] = b[j];
 
-                        for (int k = j; k < n - 1; k++)
+                        for (k = j; k < n - 1; k++)
                         {
                             b[k] = b[k + 1];
                         }
                         n--;
                         j--;
+                        //b[i].display();
                     }
                 }
             }
-            cout << "Remove:";
-            break;
-        case 6:
-            cout << "BOOK TITLE\tCOST\n";
+            cout << "BOOK NAME\tCOST\n";
             for (i = 0; i < n; i++)
-            {
-                if (b[i].cost <= 500)
-                {
-                    cout << b[i].name << " \t\t" << b[i].cost << "\n";
-                }
-                else
-                {
-                    count++;
-                }
-            }
-            cout << "\nThe number of book which greater 500: " << count;
+                b[i].display();
+            
+            
+            
             break;
-        case 5:
+        
+           case 5:
             for (i = 0; i < rem; i++)
             {
                 b1[i].display();
             }
+            break;
+          case 6:
+        cout<<"This books are below 500: "<<endl;
+        for(i=0;i<n;i++){
+            if (b[i].cost < 500){
+                b[i].price();
+                     
+                
+                
+               }
+                
+            }
+            break;
+       
+        case 7:
+        cout<<"This books are above 500: "<<endl;
+        for(i=0;i<n;i++){
+            if (b[i].cost >= 500){
+                b[i].price();
+               
+                
+            }
+        }
+            break;
+         case 8:
+         
+        
+        default:
+        cout<<"invalid choice! try again ";
+            break;
+               
+            
+        
         };
 
-    } while (ch != 7);
+    } while (ch != 8);
     return 0;
 }
