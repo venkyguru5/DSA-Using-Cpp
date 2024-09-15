@@ -1,0 +1,46 @@
+#include<iostream>
+using namespace std;
+class student{
+    //protected:
+    int roll;
+    public:
+    void set_roll(int r){
+            roll = r;
+    }
+    void get_roll(){
+        cout<<"Your roll nunber is: "<<roll<<endl;
+    }
+};
+
+class exam : public student{
+    protected:
+    float maths;
+    float physics;
+    public:
+    void set_marks(float m1, float m2){
+        maths = m1;
+        physics = m2;
+    }
+    void get_marks(){
+        cout<<"Your marks in maths are: "<<maths<<endl;
+        cout<<"Your marks in physics are: "<<physics<<endl;
+    }
+};
+class result : public exam{
+    //float percentage;
+    public:
+   // float percentage = (maths+physics)/2;
+    void display(){
+        get_roll();
+        get_marks();
+        cout<<"Your percentage is: "<<(maths+physics)/2<<"%"<<endl;
+    }
+};
+
+int main(){
+    result venky;
+    venky.set_roll(76);
+    venky.set_marks(99.0, 95.0);
+    venky.display();
+    return 0;
+}
