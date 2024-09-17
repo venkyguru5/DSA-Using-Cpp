@@ -1,0 +1,53 @@
+#include<iostream>
+using namespace std;
+class base1{
+    
+    public:
+    void say(){
+        cout<<"How are you? "<<endl;
+    } 
+};
+
+class base2{
+    public:
+    void say(){
+        cout<<"kaise ho? "<<endl;
+    }
+};
+
+class derived : public base1, public base2{
+    public:
+    void say(){
+        base1::say();
+    }
+    
+};
+
+class C{
+    public: 
+    void talk(){
+        cout<<"Hellow world "<<endl;
+    }
+};
+
+class D:public C{
+    public:
+    void talk(){
+        cout<<"Hello my beautiful people "<<endl;
+    }
+};
+
+int main(){
+    base1 b;
+    base2 B;
+    b.say();
+    B.say();
+    derived d;
+    d.say();
+
+    C c;
+    c.talk();
+    D k;
+    k.talk();
+    return 0;
+}
