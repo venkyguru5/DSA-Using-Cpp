@@ -1,0 +1,86 @@
+#include<iostream>
+#define MAX 50
+using namespace std;
+int q[MAX];
+int front = -1, rear = -1;
+class Pizza{
+  public:
+     string type,size;
+     int prize,count;
+     void insertAtRear(int prize,int count) {
+    if (rear == MAX) {
+        cout << "Queue is overflow" << endl;
+        return;
+    }
+    if(front==-1)
+    {
+     front=0;
+    }
+     rear = rear + 1;
+        q[rear] = prize;
+          q[rear] = count;
+ 
+}
+void deleteFromFront() {
+    if (front == -1 || front > rear) {
+        cout << "Queue is underflow" << endl;
+        return;
+    }
+    int no = q[front ];
+    cout << "Deleted element from front is: " << no << endl;
+
+    if (front == rear) {
+        front = -1;
+        rear = -1;
+    } else {
+        front = front + 1;
+    }
+}
+void dispaly()
+{
+  if(front==-1)
+  {
+    cout<<"Queue is empty:";
+    return;
+  }
+ 
+  for(int i=front;i<=rear;i++)
+  {
+    cout<<q[i]<<" ";
+ 
+  }
+}
+};
+int main()
+{
+  Pizza p;
+  int i,ch,tp,tc;
+  string t,s;
+  while(true)
+  {
+   cout<<"Menu\n1. Order Pizaa\n2. Server Pizaa\n3. Display(remaining)\n4. Exit...\n  Enter the Choice:";
+   cin>>ch;
+   switch(ch)
+   {
+     case 1:
+     
+          cout<<"Enter Which type pizza you want:";
+          cin>>t;
+          cout<<"Enter Size of pizza:";
+          cin>>s;
+          cout<<"Enter how many pizza you want:";
+          cin>>tc;
+          p.insertAtRear(1000,tc);
+       break;
+       case 3:
+               p.dispaly();
+         break;
+       case 4:
+       return 0;
+     
+   }
+   
+  }
+ 
+ return 0;
+}
