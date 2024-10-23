@@ -1,15 +1,23 @@
 #include<iostream>
-#define MAX 50
 using namespace std;
-int q[MAX];
-int front = -1, rear = -1;
-class Pizza{
+#define MAX 20
+
+
+struct s{
+  string type;
+  string size;
+  int count;
+ 
+};
+s q[MAX];
+
+int front=-1,rear=-1;
+class Pizaa{
   public:
-     string type,size;
-     int prize,count;
-     void insertAtRear(int prize,int count) {
+ 
+ void insertAtRear(string type,string size,int count) {
     if (rear == MAX) {
-        cout << "Queue is overflow" << endl;
+        cout << "Order are full" << endl;
         return;
     }
     if(front==-1)
@@ -17,46 +25,74 @@ class Pizza{
      front=0;
     }
      rear = rear + 1;
-        q[rear] = prize;
-          q[rear] = count;
+    q[rear].type = type;
+    q[rear].size = size;
+    q[rear].count = count;
+   
  
+
 }
 void deleteFromFront() {
     if (front == -1 || front > rear) {
-        cout << "Queue is underflow" << endl;
+        cout << "All Order are delever!!!!" << endl;
         return;
     }
-    int no = q[front ];
-    cout << "Deleted element from front is: " << no << endl;
-
+   
+    cout<<"-------------------------------------------------------------------------------"<<endl;
+   cout<<"Type :"<<q[front].type<<"\t Size:"<<q[front].size<<"\t Number of pizza:"<<q[front].count<<endl;
+   
+   
+      if(q[front].size=="S"){
+     cout<<"Total prize of pizza is you pay it:"<<q[front].count*250<<endl;
+      cout<<"-------------------------------------------------------------------------------"<<endl;
+           }
+       else if(q[front].size=="M"){
+     cout<<"Total prize of pizza is you pay it:"<<q[front].count*350<<endl;
+      cout<<"-------------------------------------------------------------------------------"<<endl;
+             }
+             else if(q[front].size=="L"){
+     cout<<"Total prize of pizza is you pay it:"<<q[front].count*400<<endl;
+      cout<<"-------------------------------------------------------------------------------"<<endl;
+             }
+       else{
+     cout<<"Total prize of pizza is you pay it:"<<q[front].count*800<<endl;
+      cout<<"-------------------------------------------------------------------------------"<<endl;
+           }
+           
+           
     if (front == rear) {
         front = -1;
         rear = -1;
     } else {
         front = front + 1;
     }
+   
 }
-void dispaly()
-{
-  if(front==-1)
-  {
-    cout<<"Queue is empty:";
-    return;
-  }
  
-  for(int i=front;i<=rear;i++)
-  {
-    cout<<q[i]<<" ";
- 
-  }
+  void displayDeque() {
+    if (front == -1) {
+        cout << "Opps! No Any Order!!!!!!!!!!!!!!" << endl;
+        return;
+    }
+   
+     cout<<"-------------------------------------------------------------------------------"<<endl;
+    for (int i = front ; i <= rear; i++) {
+        cout <<"Type:"<< q[i].type << "\t Size:"<<q[i].size<<"\t Number of pizza:"<<q[i].count<<endl;
+    }
+   
+  cout<<"-------------------------------------------------------------------------------"<<endl;
+    cout << endl;
 }
+       
+
 };
+
 int main()
 {
-  Pizza p;
-  int i,ch,tp,tc;
-  string t,s;
-  while(true)
+ Pizaa p;
+ int ch,tc;
+ string t,s;
+ while(true)
   {
    cout<<"Menu\n1. Order Pizaa\n2. Server Pizaa\n3. Display(remaining)\n4. Exit...\n  Enter the Choice:";
    cin>>ch;
@@ -64,16 +100,21 @@ int main()
    {
      case 1:
      
-          cout<<"Enter Which type pizza you want:";
+          cout<<"\nEnter Which type pizza you want:";
           cin>>t;
-          cout<<"Enter Size of pizza:";
+          cout<<"\nEnter Size of pizza(S , M , L, Xl):";
           cin>>s;
-          cout<<"Enter how many pizza you want:";
+          cout<<"\nEnter how many pizza you want:";
           cin>>tc;
-          p.insertAtRear(1000,tc);
+          p.insertAtRear(t,s,tc);
        break;
+       case 2:
+       
+           p.deleteFromFront();
+         break;
+       
        case 3:
-               p.dispaly();
+               p.displayDeque();
          break;
        case 4:
        return 0;
@@ -82,5 +123,7 @@ int main()
    
   }
  
+
  return 0;
 }
+ 
